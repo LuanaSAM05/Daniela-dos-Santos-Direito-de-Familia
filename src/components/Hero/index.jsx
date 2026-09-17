@@ -1,6 +1,8 @@
 import { FaWhatsapp, FaBalanceScale, FaAward } from "react-icons/fa";
 import lawyerPhoto from "../../assets/daniela-about.jpeg";
 
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+
 import {
   HeroSection,
   HeroContainer,
@@ -22,6 +24,8 @@ import {
 } from "./styles";
 
 export function Hero() {
+  const { ref, isVisible } = useScrollReveal();
+
   const phone = "5562981575092";
 
   const message = encodeURIComponent(
@@ -31,7 +35,7 @@ export function Hero() {
   const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
   return (
-    <HeroSection id="inicio">
+    <HeroSection id="inicio" ref={ref} className={isVisible ? "is-visible" : ""}>
       <HeroContainer>
         <HeroContent>
           <HeroBadge>

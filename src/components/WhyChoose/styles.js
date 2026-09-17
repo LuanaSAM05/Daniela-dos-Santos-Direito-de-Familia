@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp } from "../../styles/animations";
 
 export const WhyChooseSection = styled.section`
   padding: 100px 24px;
@@ -46,12 +47,14 @@ export const SectionTag = styled.span`
   color: #C5A880;
   text-transform: uppercase;
   letter-spacing: 2px;
+  ${reveal(fadeUp, 0)}
 `;
 
 export const SectionTitle = styled.h2`
   font-size: 38px;
   color: #FFFFFF;
   font-weight: 700;
+  ${reveal(fadeUp, 100)}
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -62,6 +65,7 @@ export const SectionSubtitle = styled.p`
   font-size: 16px;
   color: #94A3B8;
   line-height: 1.6;
+  ${reveal(fadeUp, 200)}
 `;
 
 export const DifferentialsGrid = styled.div`
@@ -89,6 +93,7 @@ export const DifferentialCard = styled.div`
   align-items: flex-start;
   gap: 16px;
   transition: all 0.3s ease;
+  ${({ $delay = 0 }) => reveal(fadeUp, 320 + $delay)}
 
   &:hover {
     background: rgba(197, 168, 128, 0.06);
@@ -109,6 +114,13 @@ export const CardIcon = styled.div`
   justify-content: center;
   font-size: 22px;
   border: 1px solid rgba(197, 168, 128, 0.3);
+  transition: all 0.3s ease;
+
+  ${DifferentialCard}:hover & {
+    background-color: rgba(197, 168, 128, 0.18);
+    box-shadow: 0 0 16px rgba(197, 168, 128, 0.35);
+    transform: scale(1.08);
+  }
 `;
 
 export const CardTitle = styled.h3`

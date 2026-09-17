@@ -1,4 +1,7 @@
 import { FaWhatsapp, FaLinkedinIn } from "react-icons/fa";
+
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+
 import {
   FooterContainer,
   FooterContent,
@@ -17,13 +20,15 @@ import {
 } from "./styles";
 
 export function Footer() {
+  const { ref, isVisible } = useScrollReveal();
+
   const phone = "5562981575092";
   const message = encodeURIComponent("Olá, Daniela! Gostaria de conversar sobre meu caso.");
   const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
   const linkedinUrl = "https://www.linkedin.com/in/daniela-dos-santos-6a808230b";
 
   return (
-    <FooterContainer>
+    <FooterContainer ref={ref} className={isVisible ? "is-visible" : ""}>
       <FooterContent>
         {/* Topo do Footer */}
         <FooterTop>

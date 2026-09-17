@@ -83,13 +83,13 @@ export function Header() {
 
       {/* Menu Mobile */}
       <MobileMenu $isOpen={isOpen}>
-        <MobileNavLink href="#inicio" onClick={closeMenu}>Início</MobileNavLink>
-        <MobileNavLink href="#sobre" onClick={closeMenu}>Sobre</MobileNavLink>
-        <MobileNavLink href="#atuacao" onClick={closeMenu}>Atuação</MobileNavLink>
-        <MobileNavLink href="#diferenciais" onClick={closeMenu}>Diferenciais</MobileNavLink>
-        <MobileNavLink href="#contato" onClick={closeMenu}>Contato</MobileNavLink>
+        <MobileNavLink href="#inicio" $isOpen={isOpen} $delay={40} onClick={closeMenu}>Início</MobileNavLink>
+        <MobileNavLink href="#sobre" $isOpen={isOpen} $delay={80} onClick={closeMenu}>Sobre</MobileNavLink>
+        <MobileNavLink href="#atuacao" $isOpen={isOpen} $delay={120} onClick={closeMenu}>Atuação</MobileNavLink>
+        <MobileNavLink href="#diferenciais" $isOpen={isOpen} $delay={160} onClick={closeMenu}>Diferenciais</MobileNavLink>
+        <MobileNavLink href="#contato" $isOpen={isOpen} $delay={200} onClick={closeMenu}>Contato</MobileNavLink>
         
-        <MobileWhatsAppButton href={whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+        <MobileWhatsAppButton href={whatsappUrl} target="_blank" rel="noopener noreferrer" $isOpen={isOpen} onClick={closeMenu}>
           <FaWhatsapp size={18} />
           Fale comigo no WhatsApp
         </MobileWhatsAppButton>

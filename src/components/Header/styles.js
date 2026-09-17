@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { fadeDown, fadeUp } from "../../styles/animations";
 
 export const HeaderContainer = styled.header`
   position: fixed;
@@ -10,8 +11,13 @@ export const HeaderContainer = styled.header`
   backdrop-filter: blur(8px);
   border-bottom: 1px solid ${(props) => (props.$scrolled ? "rgba(197, 168, 128, 0.25)" : "rgba(255, 255, 255, 0.08)")};
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: ${(props) => (props.$scrolled ? "0 4px 20px rgba(0, 0, 0, 0.2)" : "none")};
+  animation: ${fadeDown} 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 `;
 
 export const HeaderContent = styled.div`
@@ -150,6 +156,11 @@ export const MobileMenuButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 8px;
+  transition: transform 0.25s ease;
+
+  &:active {
+    transform: scale(0.85);
+  }
 
   @media (max-width: 868px) {
     display: flex;
@@ -162,7 +173,7 @@ export const MobileMenu = styled.div`
   display: none;
 
   @media (max-width: 868px) {
-    display: ${(props) => (props.$isOpen ? "flex" : "none")};
+    display: flex;
     flex-direction: column;
     position: absolute;
     top: 85px;
@@ -170,9 +181,12 @@ export const MobileMenu = styled.div`
     width: 100%;
     background-color: #0B192C;
     border-bottom: 2px solid #C5A880;
-    padding: 24px;
+    padding: ${(props) => (props.$isOpen ? "24px" : "0 24px")};
     gap: 18px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-height: ${(props) => (props.$isOpen ? "480px" : "0")};
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
   }
 `;
 
@@ -184,7 +198,10 @@ export const MobileNavLink = styled.a`
   text-decoration: none;
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  transition: color 0.2s ease;
+  opacity: ${(props) => (props.$isOpen ? 1 : 0)};
+  transform: translateY(${(props) => (props.$isOpen ? "0" : "-8px")});
+  transition: color 0.2s ease, opacity 0.35s ease, transform 0.35s ease;
+  transition-delay: ${(props) => (props.$isOpen ? `${props.$delay || 0}ms` : "0ms")};
 
   &:hover {
     color: #C5A880;
@@ -205,4 +222,8 @@ export const MobileWhatsAppButton = styled.a`
   text-decoration: none;
   margin-top: 8px;
   text-align: center;
+  opacity: ${(props) => (props.$isOpen ? 1 : 0)};
+  transform: translateY(${(props) => (props.$isOpen ? "0" : "-8px")});
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition-delay: ${(props) => (props.$isOpen ? "260ms" : "0ms")};
 `;

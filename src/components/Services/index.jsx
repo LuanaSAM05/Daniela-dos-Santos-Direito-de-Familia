@@ -7,6 +7,9 @@ import {
   FaScroll,
   FaArrowRight 
 } from "react-icons/fa";
+
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+
 import {
   ServicesSection,
   ServicesContainer,
@@ -24,6 +27,8 @@ import {
 } from "./styles";
 
 export function Services() {
+  const { ref, isVisible } = useScrollReveal();
+
   const phone = "5562981575092";
 
   // Lista de serviços com as descrições exatas solicitadas
@@ -73,7 +78,7 @@ export function Services() {
   ];
 
   return (
-    <ServicesSection id="atuacao">
+    <ServicesSection id="atuacao" ref={ref} className={isVisible ? "is-visible" : ""}>
       <ServicesContainer>
         {/* Cabeçalho da Seção */}
         <SectionHeader>
@@ -86,12 +91,12 @@ export function Services() {
 
         {/* Grid de Cards dos Serviços */}
         <ServicesGrid>
-          {servicesList.map((service) => {
+          {servicesList.map((service, index) => {
             const customMessage = encodeURIComponent(`Olá, Daniela! Gostaria de uma orientação sobre ${service.query}.`);
             const serviceWhatsappUrl = `https://wa.me/${phone}?text=${customMessage}`;
 
             return (
-              <ServiceCard key={service.id}>
+              <ServiceCard key={service.id} $delay={index * 90}>
                 <CardTop>
                   <IconBox>{service.icon}</IconBox>
                   <CardTitle>{service.title}</CardTitle>

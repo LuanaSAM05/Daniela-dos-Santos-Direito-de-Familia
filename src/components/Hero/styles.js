@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp, fadeLeft, scaleIn } from "../../styles/animations";
 
 export const HeroSection = styled.section`
   min-height: 100vh;
@@ -64,6 +65,7 @@ export const HeroBadge = styled.div`
   font-weight: 500;
   letter-spacing: 0.5px;
   width: fit-content;
+  ${reveal(fadeUp, 0)}
 
   @media (max-width: 968px) {
     margin: 0 auto;
@@ -75,6 +77,7 @@ export const HeroTitle = styled.h1`
   line-height: 1.2;
   color: #FFFFFF;
   font-weight: 700;
+  ${reveal(fadeUp, 200)}
 
   span {
     color: #C5A880;
@@ -95,6 +98,7 @@ export const HeroSubtitle = styled.p`
   line-height: 1.7;
   color: #CBD5E1;
   max-width: 580px;
+  ${reveal(fadeUp, 400)}
 
   @media (max-width: 768px) {
     font-size: 15px;
@@ -106,6 +110,7 @@ export const ButtonGroup = styled.div`
   gap: 16px;
   margin-top: 15px;
   flex-wrap: wrap;
+  ${reveal(fadeUp, 600)}
 
   @media (max-width: 968px) {
     justify-content: center;
@@ -174,6 +179,7 @@ export const HeroImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${reveal(fadeLeft, 250)}
 `;
 
 export const ImageCard = styled.div`
@@ -184,6 +190,7 @@ export const ImageCard = styled.div`
   padding: 12px;
   background: linear-gradient(145deg, rgba(197, 168, 128, 0.3), rgba(11, 25, 44, 0.8));
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 
   &::before {
     content: '';
@@ -192,6 +199,11 @@ export const ImageCard = styled.div`
     border-radius: 14px;
     background: linear-gradient(135deg, rgba(197, 168, 128, 0.6), transparent, rgba(197, 168, 128, 0.2));
     z-index: -1;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 50px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -224,6 +236,13 @@ export const FloatingInfoBox = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  ${reveal(scaleIn, 1000)}
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+  }
 
   @media (max-width: 968px) {
     left: 10px;

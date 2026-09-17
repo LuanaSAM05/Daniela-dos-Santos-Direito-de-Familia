@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp, scaleIn } from "../../styles/animations";
 
 export const LocationSection = styled.section`
   padding: 80px 24px;
@@ -24,6 +25,7 @@ export const LocationContainer = styled.div`
   box-shadow: 0 10px 30px rgba(11, 25, 44, 0.04);
   position: relative;
   overflow: hidden;
+  ${reveal(scaleIn, 0)}
 
   &::before {
     content: '';
@@ -52,6 +54,7 @@ export const LocationIconBox = styled.div`
   font-size: 26px;
   margin-bottom: 20px;
   box-shadow: 0 4px 15px rgba(11, 25, 44, 0.2);
+  ${reveal(scaleIn, 150)}
 `;
 
 export const LocationTitle = styled.h2`
@@ -59,6 +62,7 @@ export const LocationTitle = styled.h2`
   color: #0B192C;
   font-weight: 700;
   margin-bottom: 12px;
+  ${reveal(fadeUp, 250)}
 
   @media (max-width: 768px) {
     font-size: 24px;
@@ -71,6 +75,7 @@ export const LocationText = styled.p`
   max-width: 620px;
   line-height: 1.6;
   margin-bottom: 28px;
+  ${reveal(fadeUp, 350)}
 
   strong {
     color: #0B192C;
@@ -95,8 +100,17 @@ export const RegionBadge = styled.span`
   display: flex;
   align-items: center;
   gap: 6px;
+  transition: all 0.3s ease;
+  ${({ $delay = 0 }) => reveal(fadeUp, 450 + $delay)}
 
   span {
     color: #C5A880;
+  }
+
+  &:hover {
+    border-color: #C5A880;
+    background-color: #FCFAF7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(197, 168, 128, 0.15);
   }
 `;

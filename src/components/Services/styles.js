@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp } from "../../styles/animations";
 
 export const ServicesSection = styled.section`
   padding: 100px 24px;
@@ -35,12 +36,14 @@ export const SectionTag = styled.span`
   color: #B38E5D;
   text-transform: uppercase;
   letter-spacing: 2px;
+  ${reveal(fadeUp, 0)}
 `;
 
 export const SectionTitle = styled.h2`
   font-size: 38px;
   color: #0B192C;
   font-weight: 700;
+  ${reveal(fadeUp, 100)}
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -51,6 +54,7 @@ export const SectionSubtitle = styled.p`
   font-size: 16px;
   color: #64748B;
   line-height: 1.6;
+  ${reveal(fadeUp, 200)}
 `;
 
 export const ServicesGrid = styled.div`
@@ -80,6 +84,7 @@ export const ServiceCard = styled.div`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  ${({ $delay = 0 }) => reveal(fadeUp, 320 + $delay)}
 
   &::before {
     content: '';
@@ -125,6 +130,7 @@ export const IconBox = styled.div`
   ${ServiceCard}:hover & {
     background-color: #0B192C;
     color: #C5A880;
+    transform: scale(1.1) rotate(-4deg);
   }
 `;
 

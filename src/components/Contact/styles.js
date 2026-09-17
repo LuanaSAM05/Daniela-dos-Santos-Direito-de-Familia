@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp, scaleIn } from "../../styles/animations";
 
 export const ContactSection = styled.section`
   padding: 100px 24px;
@@ -37,6 +38,7 @@ export const CTATag = styled.span`
   color: #C5A880;
   text-transform: uppercase;
   letter-spacing: 2px;
+  ${reveal(fadeUp, 0)}
 `;
 
 export const CTATitle = styled.h2`
@@ -44,6 +46,7 @@ export const CTATitle = styled.h2`
   color: #FFFFFF;
   font-weight: 700;
   line-height: 1.2;
+  ${reveal(fadeUp, 120)}
 
   span {
     color: #C5A880;
@@ -59,6 +62,7 @@ export const CTAText = styled.p`
   color: #CBD5E1;
   line-height: 1.7;
   max-width: 640px;
+  ${reveal(fadeUp, 240)}
 
   @media (max-width: 768px) {
     font-size: 15px;
@@ -80,6 +84,7 @@ export const CTAButton = styled.a`
   margin-top: 10px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(197, 168, 128, 0.35);
+  ${reveal(fadeUp, 360)}
 
   &:hover {
     background: linear-gradient(135deg, #D4AF37 0%, #C5A880 100%);
@@ -113,10 +118,12 @@ export const ContactInfoCard = styled.div`
   align-items: center;
   gap: 16px;
   transition: all 0.3s ease;
+  ${({ $delay = 0 }) => reveal(scaleIn, 500 + $delay)}
 
   &:hover {
     border-color: #C5A880;
     background: rgba(197, 168, 128, 0.08);
+    transform: translateY(-3px);
   }
 `;
 
@@ -131,6 +138,11 @@ export const InfoIconBox = styled.div`
   justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+
+  ${ContactInfoCard}:hover & {
+    transform: scale(1.1);
+  }
 `;
 
 export const InfoTextGroup = styled.div`

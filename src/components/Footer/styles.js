@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp } from "../../styles/animations";
 
 export const FooterContainer = styled.footer`
   background-color: #060E18;
@@ -33,6 +34,7 @@ export const FooterBrand = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
+  ${reveal(fadeUp, 0)}
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -79,6 +81,7 @@ export const FooterSocialLinks = styled.div`
   display: flex;
   align-items: center;
   gap: 14px;
+  ${reveal(fadeUp, 140)}
 `;
 
 export const SocialIconButton = styled.a`
@@ -99,7 +102,7 @@ export const SocialIconButton = styled.a`
     background: #C5A880;
     color: #0B192C;
     border-color: #C5A880;
-    transform: translateY(-3px);
+    transform: translateY(-3px) rotate(-6deg);
   }
 `;
 
@@ -107,6 +110,7 @@ export const FooterDivider = styled.div`
   width: 100%;
   height: 1px;
   background-color: rgba(255, 255, 255, 0.08);
+  ${reveal(fadeUp, 220)}
 `;
 
 export const FooterBottom = styled.div`
@@ -117,6 +121,7 @@ export const FooterBottom = styled.div`
   gap: 16px;
   font-size: 13px;
   color: #64748B;
+  ${reveal(fadeUp, 300)}
 
   @media (max-width: 768px) {
     flex-direction: column;

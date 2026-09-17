@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { reveal, fadeUp, fadeRight, scaleIn } from "../../styles/animations";
 
 export const AboutSection = styled.section`
   padding: 100px 24px;
@@ -28,6 +29,7 @@ export const AboutImageWrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  ${reveal(fadeRight, 0)}
 
   &::after {
     content: '';
@@ -39,10 +41,15 @@ export const AboutImageWrapper = styled.div`
     border: 2px solid #C5A880;
     border-radius: 12px;
     z-index: 1;
+    transition: transform 0.4s ease;
 
     @media (max-width: 480px) {
       display: none;
     }
+  }
+
+  &:hover::after {
+    transform: translate(6px, 6px);
   }
 `;
 
@@ -56,6 +63,12 @@ export const AboutImage = styled.img`
   position: relative;
   z-index: 2;
   box-shadow: 0 15px 35px rgba(11, 25, 44, 0.12);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 45px rgba(11, 25, 44, 0.18);
+  }
 
   @media (max-width: 768px) {
     height: 400px;
@@ -82,6 +95,7 @@ export const SectionTag = styled.span`
   display: flex;
   align-items: center;
   gap: 8px;
+  ${reveal(fadeUp, 100)}
 
   &::before {
     content: '';
@@ -96,6 +110,7 @@ export const AboutTitle = styled.h2`
   color: #0B192C;
   font-weight: 700;
   line-height: 1.25;
+  ${reveal(fadeUp, 180)}
 
   @media (max-width: 768px) {
     font-size: 30px;
@@ -106,6 +121,7 @@ export const AboutText = styled.p`
   font-size: 16px;
   color: #475569;
   line-height: 1.8;
+  ${({ $delay = 260 }) => reveal(fadeUp, $delay)}
 `;
 
 export const HighlightBox = styled.div`
@@ -114,6 +130,13 @@ export const HighlightBox = styled.div`
   padding: 16px 20px;
   border-radius: 0 8px 8px 0;
   margin: 8px 0;
+  ${reveal(scaleIn, 340)}
+  transition: border-left-width 0.3s ease, background-color 0.3s ease;
+
+  &:hover {
+    border-left-width: 6px;
+    background-color: #F3F6FA;
+  }
 `;
 
 export const HighlightText = styled.p`
@@ -144,6 +167,7 @@ export const CredentialCard = styled.div`
   border-radius: 8px;
   border: 1px solid #E2E8F0;
   transition: all 0.3s ease;
+  ${({ $delay = 0 }) => reveal(fadeUp, 480 + $delay)}
 
   &:hover {
     border-color: #C5A880;
@@ -158,6 +182,11 @@ export const CredentialIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+
+  ${CredentialCard}:hover & {
+    transform: scale(1.15);
+  }
 `;
 
 export const CredentialInfo = styled.div`
@@ -191,6 +220,7 @@ export const AboutButton = styled.a`
   margin-top: 10px;
   border: 1px solid transparent;
   transition: all 0.3s ease;
+  ${reveal(fadeUp, 700)}
 
   &:hover {
     background-color: #152A4A;

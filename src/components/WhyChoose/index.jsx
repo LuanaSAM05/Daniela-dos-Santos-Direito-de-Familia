@@ -1,4 +1,7 @@
 import { FaHeart, FaUserCheck, FaBalanceScale, FaChessKnight } from "react-icons/fa";
+
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+
 import {
   WhyChooseSection,
   WhyChooseContainer,
@@ -14,6 +17,8 @@ import {
 } from "./styles";
 
 export function WhyChoose() {
+  const { ref, isVisible } = useScrollReveal();
+
   const differentials = [
     {
       id: 1,
@@ -42,7 +47,7 @@ export function WhyChoose() {
   ];
 
   return (
-    <WhyChooseSection id="diferenciais">
+    <WhyChooseSection id="diferenciais" ref={ref} className={isVisible ? "is-visible" : ""}>
       <WhyChooseContainer>
         {/* Cabeçalho da Seção */}
         <SectionHeader>
@@ -55,8 +60,8 @@ export function WhyChoose() {
 
         {/* Grid com os 4 diferenciais */}
         <DifferentialsGrid>
-          {differentials.map((item) => (
-            <DifferentialCard key={item.id}>
+          {differentials.map((item, index) => (
+            <DifferentialCard key={item.id} $delay={index * 90}>
               <CardIcon>{item.icon}</CardIcon>
               <CardTitle>{item.title}</CardTitle>
               <CardText>{item.text}</CardText>

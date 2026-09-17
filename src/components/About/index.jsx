@@ -8,6 +8,8 @@ import {
 
 import aboutPhoto from "../../assets/daniela-hero.jpeg";
 
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+
 import {
   AboutSection,
   AboutContainer,
@@ -29,6 +31,8 @@ import {
 } from "./styles";
 
 export function About() {
+  const { ref, isVisible } = useScrollReveal();
+
   const phone = "5562981575092";
 
   const message = encodeURIComponent(
@@ -38,7 +42,7 @@ export function About() {
   const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
   return (
-    <AboutSection id="sobre">
+    <AboutSection id="sobre" ref={ref} className={isVisible ? "is-visible" : ""}>
       <AboutContainer>
         <AboutImageWrapper>
           <AboutImage
@@ -52,7 +56,7 @@ export function About() {
 
           <AboutTitle>Sobre Daniela</AboutTitle>
 
-          <AboutText>
+          <AboutText $delay={260}>
             Sou advogada, formada em Direito pela{" "}
             <strong>UniGoiás em 2020</strong> e atuante na advocacia desde 2024,
             com especialização em <strong>Direito de Família</strong>. Minha
@@ -70,21 +74,21 @@ export function About() {
             </HighlightText>
           </HighlightBox>
 
-          <AboutText>
+          <AboutText $delay={400}>
             Busco oferecer um atendimento próximo e individualizado,
             compreendendo as particularidades de cada caso e trabalhando para
             alcançar as melhores soluções dentro das necessidades de cada
             cliente.
           </AboutText>
 
-          <AboutText>
+          <AboutText $delay={440}>
             Estou em constante aperfeiçoamento profissional e comprometida com
             uma atuação jurídica séria, ética e dedicada, construindo minha
             carreira com responsabilidade e paixão pelo Direito.
           </AboutText>
 
           <CredentialsGrid>
-            <CredentialCard>
+            <CredentialCard $delay={0}>
               <CredentialIcon>
                 <FaIdCard />
               </CredentialIcon>
@@ -95,7 +99,7 @@ export function About() {
               </CredentialInfo>
             </CredentialCard>
 
-            <CredentialCard>
+            <CredentialCard $delay={80}>
               <CredentialIcon>
                 <FaGraduationCap />
               </CredentialIcon>
@@ -106,7 +110,7 @@ export function About() {
               </CredentialInfo>
             </CredentialCard>
 
-            <CredentialCard>
+            <CredentialCard $delay={160}>
               <CredentialIcon>
                 <FaHeart />
               </CredentialIcon>
@@ -117,7 +121,7 @@ export function About() {
               </CredentialInfo>
             </CredentialCard>
 
-            <CredentialCard>
+            <CredentialCard $delay={240}>
               <CredentialIcon>
                 <FaMapMarkerAlt />
               </CredentialIcon>
